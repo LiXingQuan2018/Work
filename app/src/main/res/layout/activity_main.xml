@@ -11,6 +11,7 @@
         android:id="@+id/activity_main_tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         tools:text="1,2,3,4,5,6,7"/>
@@ -24,6 +25,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:id="@+id/spinner"
+            android:entries="@array/select"
+            android:layout_weight="1"/>
         <Button
             android:id="@+id/activity_main_btn_generate"
             android:layout_width="0dp"

@@ -1,47 +1,41 @@
 package net.lzzy.algorithm;
 
-import android.util.Log;
 
 /**
- * Created by lzzy_gxy on 2019/6/13.
- * Description:The program by LXQ
+ * Created by lzzy_gxy on 2019/6/15.
+ * Description:
  */
-public class CustomizeSort implements Comparable {
-
+public abstract class BaseSort<T extends Comparable<? super T>> {
     //region
 
+    private Integer items[];
     private long runtime;//运行时长
     private int compareCount;//比较次数
     private int moveCount;//移动次数
     private int swapCount;//交换次数
-    private Integer items[];
 
     //endregion
 
-    /**
-     * 构造方法
-     */
-    public CustomizeSort(Integer items[]){
+    public BaseSort(Integer items[]){
         this.items=items;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
+    //返回运行时长
     public long getRuntime() {
         return runtime;
     }
 
+    //返回比较次数
     public int getCompareCount() {
         return compareCount;
     }
 
+    //返回移动次数
     public int getMoveCount() {
         return moveCount;
     }
 
+    //返回交换次数
     public int getSwapCount() {
         return swapCount;
     }
@@ -51,41 +45,28 @@ public class CustomizeSort implements Comparable {
         compareCount++;
         return a>=b?true:false;
     }
-
     //交换两个数
-    public void swap(int j,int kIndex){
-        swapCount++;
-        kIndex=items[j];
+    public void swap(int j,int temp){
+        temp=items[j];
         items[j]=items[j+1];
-        items[j+1]=kIndex;
+        items[j+1]=temp;
+        swapCount++;
     }
-
-    public void move(){
-        moveCount++;
-    }
-
     //返回排序结果
     public Integer[] returnResoult(){
-        //sort();
         return items;
     }
-
-    //排序方法
-    public void sort(){
-        long current=System.currentTimeMillis();
-        Log.e("curent",current+"");
-        int kIndex = 0;
-        for(int i=0;i<items.length-1;i++){
-            for(int j=0;j<items.length-1;j++){
-                if(compareTwo(items[j],items[j+1])){
-                    swap(j,kIndex);
-                }
-            }
-        }
-        long end=System.currentTimeMillis();
-        Log.e("end",end+"");
-        runtime=end-current;
-        Log.e("runtime",runtime+"");
+    //移动
+    public void move(int j){
+        moveCount++;
+        items[j+1]=items[j];
     }
-
+    public void sorttWithTime(){
+        long current=System.currentTimeMillis();
+        sort();
+        long end=System.currentTimeMillis();
+        runtime=end-current;
+    }
+    //抽象排序方法
+    public abstract void sort();
 }

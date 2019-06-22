@@ -1,13 +1,12 @@
 package net.lzzy.algorithm;
 
-import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                selectSortFun();
+                //selectSortFun();
                 //directSort();
                 //insertSort();
                 //DirectSort sort=new DirectSort(items);//直接选择排序
@@ -104,34 +103,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < items.length; i++) {
             items[i] = generator.nextInt(99);
         }
-    }
-    public void selectSortFun(){
-        BaseSort sort = null;
-        switch (spinner.getSelectedItemPosition()){
-            case 0:
-                sort=new DirectSort(items);//直接选择排序
-                Toast.makeText(this, "直接选择排序",
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                sort=new InsertSort(items);//直接插入排序
-                Toast.makeText(this, "直接插入排序",
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                sort=new ShellSort(items);//希尔排序
-                Toast.makeText(this, "希尔排序",
-                        Toast.LENGTH_SHORT).show();
-                break;
-        }
-        sort.sorttWithTime();//调用排序方法
-        items=sort.returnResoult();//获得排序结果
-        new AlertDialog.Builder(MainActivity.this)
-                .setTitle("排序完成")
-                .setMessage("对比次数："+sort.getCompareCount()
-                        +"\n交换次数："+sort.getSwapCount()+
-                        "\n移动次数："+sort.getMoveCount()+
-                        "\n运行时长："+sort.getRuntime())
-                .show();
     }
 }

@@ -21,6 +21,13 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/activity_main_edt_items_hint"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/liner"
+        android:orientation="horizontal"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
